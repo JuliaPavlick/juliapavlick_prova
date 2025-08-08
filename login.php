@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
     $sql = "SELECT * FROM usuario WHERE email = :email";
     $stmt = $PDO->prepare($sql);
-    $stmt->bindParam('email',$email);
+    $stmt->bindParam(':email',$email);
     $stmt->execute();
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
