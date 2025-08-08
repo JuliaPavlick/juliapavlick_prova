@@ -21,11 +21,11 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         //VERIFICA SE A SENHA É TEMPORARIA
         if($usuario['senha_temporaria']){
             //REDIRECIONA PARA A TROCA DE SENHA
-            header("Location: alterar_senha.php");
+            header("Location:alterar_senha.php");
             exit();
         }else{
             //REDIRECIONA PARA A PAGINA PRINCIPAL
-            header("Locatipn: principal.php");
+            header("Locatipn:principal.php");
             exit();
         }
     }else{

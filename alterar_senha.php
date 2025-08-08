@@ -3,7 +3,7 @@ session_start();
 require_once 'conexao.php';
 
 //GARANTE QUE O USUARIO ESTEJA LOGADO
-if (!isste($_SESSION['id_usuario'])){
+if (!isset($_SESSION['id_usuario'])){
     echo "<script>alert('Acesso Negado!');window.locartion.href='login.php';</script>";
     exit();
 }
@@ -26,6 +26,50 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':senha',$senha_hash);
         $stmt->bindParam(':id',$id_usuario);
+
+        if($stmt->execute()){
+            session_destroy(); //FINALIZA A SESSÃO
+             echo "<script>alert('Senha aterada um sucesso!');window.locartion.href='login.php';</script>";
+        }else{
+            echo "<script>alert('Erro ao alterar a senha!');</script>";
+        }
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar senha</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Alterar senha</h2>
+    <p>Olá, <strong><?php echo $_SESSION['usuario'];?></strong>.Digite sua nova senha Abaixo: </p>
+
+    <form action="alterar_senha.php" method="POST">
+        <label for="nova_senha">Nova senha</label>
+        <input type="password" id="nova_senha" name="nova_senha" required>
+
+        <label for="confirmar_senha"> Confirmar Nova senha</label>
+        <input type="password" id="confirmar_senha" name="confirmar_senha" required>
+
+        <label>
+            <input type="checkbox" onclick="mostrarSenha()">Mostrar senha
+        </label>
+
+        <button type="submit">Salvar Nova Senha<button>
+    </form>
+
+    <script>
+        function mostrarSenha(){
+            var senha1 = document.getElementById("nova_senha");
+            var senha2 = document.getElementById("confirmar_senha");
+            var tipo = senha1.type === "password" ? "text": "password";
+            senha1.type=tipo;
+            senha2.type=tipo;
+        }
+    </script>
+</body>
+</html>
