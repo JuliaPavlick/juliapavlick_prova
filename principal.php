@@ -3,7 +3,7 @@ session_start();
 require_once 'conexao.php';
 
 if(!isset($_SESSION['usuario'])){
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 //OBTENDO O NOME DO PERFIL DO USUARIO LOGADO 
@@ -43,7 +43,7 @@ $permissoes =[
     "excluir"=>["excluir_produto"],
     ]
 
-    =>["Cadastrar"=>["cadastro_usuario.php","cadastro_perfil.php","cadastro_cliente",
+    3=>["Cadastrar"=>["cadastro_usuario.php","cadastro_perfil.php","cadastro_cliente",
     "cadastro_fornecedor","cadastro_produto","cadastro_funcionario"],
     "Buscar"=>["buscar_usuario.php","buscar_perfil.php","buscar_cliente",
     "buscar_fornecedor","buscar_produto","buscar_funcionario"],
