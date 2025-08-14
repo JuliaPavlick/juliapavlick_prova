@@ -2,9 +2,10 @@
 session_start();
 require_once 'conexao.php';
 
-//VERIFICA SE O USUARIO TEM PERMISSAO SUPONDO QUE O PERFIL 1 SEJA O ADMINISTRADOR
-if ($_SESSION['perfil']!=1){
-    echo "Acesso negado";
+//VERIFICA SE O USUARIO TEM PERMISSAO
+//SUPONDO QUE O PERFIL 1 SEJA ADM
+if($_SESSION['perfil'] != 1){
+    echo "Acesso negado!";
 }
 
 if ($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -15,10 +16,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
 
     $sql = "INSERT INTO usuario (nome,email,senha,id_perfil) VALUES (:nome,:email,:senha,:id_perfil)";
     $stmt = $pdo->$prepare($sql);
-    $stmt->bindParam(:nome,$nome);
-    $stmt->bindParam(:email,$email);
-    $stmt->bindParam(:senha,$senha);
-    $stmt->bindParam(:id_perfil,$id_perfil);
+    $stmt->bindParam(":nome",$nome);
+    $stmt->bindParam(":email",$email);
+    $stmt->bindParam(":senha",$senha);
+    $stmt->bindParam(":id_perfil",$id_perfil);
 
     if($stmt->execute()){
         echo "<script>alert('Usuario Cadastrado Com sucesso');</script>";
@@ -53,8 +54,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
             <option value="2">secretaria</option>
             <option value="3">almoxarife</option>
             <option value="4">Cliente</option>
+        </select> 
             
-
         <button type="submit">Salvar</button>
         <button type="reset">Cancelar</button>
     </form>
