@@ -124,9 +124,6 @@ $opcoes_menu = $permissoes[$id_perfil];
         </ul>
     </nav>
 
-
-    <address>Trabalho desenvolvido pelo aluno Pedro Gabriel | Técnico Dev Sistemas</address>
-
 </body>
 
 </html>
