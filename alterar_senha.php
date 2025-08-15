@@ -28,12 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':senha', $senha_hash);
         $stmt->bindParam(':id', $id_usuario);
 
-
         if ($stmt->execute()) {
             session_destroy(); //FINALIZA A SESSÃO
             echo "<script>alert('Faça login novamente!');window.location.href='index.php';</script>";
         } else {
-            echo "<script>alert('Erro ao alterar a senha!');;</script>";
+            echo "<script>alert('Erro ao alterar a senha!');</script>";
         }
     }
 }
@@ -56,11 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="nova_senha">Nova Senha:</label>
         <input type="password" name="nova_senha" id="nova_senha" required>
 
-
         <label for="confirmar_senha">Confirmar Senha:</label>
         <input type="password" name="confirmar_senha" id="confirmar_senha" required>
         
-        <label for="">
+        <label>
             <input type="checkbox" onclick="mostrarSenha()"> Mostrar senha
         </label>
 
@@ -68,18 +66,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <script>
-
-    function mostrarSenha(){
+    function mostrarSenha() {
         let senha1 = document.getElementById("nova_senha");
         let senha2 = document.getElementById("confirmar_senha");
-        let tipo = senha1.type === "password" ? "text": "password";
-        senha1.type=tipo;
-        senha2.type=tipo;
-
+        let tipo = senha1.type === "password" ? "text" : "password";
+        senha1.type = tipo;
+        senha2.type = tipo;
     }
-
     </script>
 
 </body>
-
 </html>
