@@ -1,30 +1,34 @@
 <?php
 session_start();
-require_once 'conexao.php';
+require_once("conexao.php");
 
-// Verifica se o usuário tem permissão de ADM
-if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1) {
-    echo "<script>alert('Acesso negado!'); window.location.href='principal.php';</script>";
+// VERIFICA SE O USUARIO TEM PERMISSAO DE ADM
+if ($_SESSION['perfil'] != 1) {
+    echo "<script>alert('Acesso negado!');window.location.href='principal.php'</script>";
     exit();
 }
 
-// Busca usuários cadastrados em ordem alfabética
+//INICIALIZA VARIAVEL PARA ARMAZENAR USUARIOS
+$usuarios = [];
+
+//BUSCA TODOS OS USUÁRIOS CADASTRADOS EM ORDEM ALFABETICA
 $sql = "SELECT * FROM usuario ORDER BY nome ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Se um ID for passado via GET, exclui o usuário
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+//SE UM ID FOR PASSADO VIA GET, EXCLUI O USUARIO
+if (isset($_GET['id']) && is_numeric(trim($_GET['id']))) {
     $id_usuario = $_GET['id'];
 
+    //EXCLUI O USUARIO DO BANCO DE DADOS
     $sql = "DELETE FROM usuario WHERE id_usuario = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id_usuario, PDO::PARAM_INT);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Usuário excluído com sucesso!'); window.location.href='buscar_usuario.php';</script>";
-    } else {
-        echo "<script>alert('Erro ao excluir usuário!'); window.location.href='buscar_usuario.php';</script>";
-    }
 }
+if($stmt->execute()) {
+    echo "<script>alert('Usuário excluido com sucesso!');window.location.href='excluir_usuario.php'</script>";
+}else{
+    echo "<script>alert('Não foi possível excluir o usuário!');</script>";
+}
+?>
