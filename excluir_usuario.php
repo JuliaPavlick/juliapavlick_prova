@@ -8,28 +8,29 @@ if ($_SESSION['perfil'] != 1) {
     exit();
 }
 
-//INICIALIZA VARIAVEL PARA ARMAZENAR USUARIOS
+// INICIALIZA VARIAVEL PARA ARMAZENAR USUARIOS
 $usuarios = [];
 
-//BUSCA TODOS OS USUÁRIOS CADASTRADOS EM ORDEM ALFABETICA
+// BUSCA TODOS OS USUÁRIOS CADASTRADOS EM ORDEM ALFABETICA
 $sql = "SELECT * FROM usuario ORDER BY nome ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//SE UM ID FOR PASSADO VIA GET, EXCLUI O USUARIO
+// SE UM ID FOR PASSADO VIA GET, EXCLUI O USUARIO
 if (isset($_GET['id']) && is_numeric(trim($_GET['id']))) {
     $id_usuario = $_GET['id'];
 
-    //EXCLUI O USUARIO DO BANCO DE DADOS
+    // EXCLUI O USUARIO DO BANCO DE DADOS
     $sql = "DELETE FROM usuario WHERE id_usuario = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id_usuario, PDO::PARAM_INT);
-}
-if($stmt->execute()) {
-    echo "<script>alert('Usuário excluido com sucesso!');window.location.href='excluir_usuario.php'</script>";
-}else{
-    echo "<script>alert('Não foi possível excluir o usuário!');</script>";
+    
+    if ($stmt->execute()) {
+        echo "<script>alert('Usuário excluído com sucesso!');window.location.href='excluir_usuario.php'</script>";
+    } else {
+        echo "<script>alert('Não foi possível excluir o usuário!');</script>";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -42,29 +43,29 @@ if($stmt->execute()) {
 </head>
 <body>
     <h2>Excluir Usuario</h2>
-    <?php if(!empyt($usuarios)):?>
+    <?php if (!empty($usuarios)): ?>
         <table border="1">
             <tr>
-                <th>ID<th>
-                <th>Nome<th>
-                <th>Email<th>
-                <th>Perfil<th>
-                <th>Ações<th>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Perfil</th>
+                <th>Ações</th>
             </tr>
-        <?php foreach($usuarios as $usuario): ?>
-            <tr>
-                <td><?= htmlspecialchars($usuario['id_usuario'])?></td>
-                <td><?= htmlspecialchars($usuario['nome'])?></td>
-                <td><?= htmlspecialchars($usuario['email'])?></td>
-                <td><?= htmlspecialchars($usuario['id_perfil'])?></td>
-                <td>
-                    <a href="excluir_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario'])?>"
-                    onclick="return confirm('Tem certeza que deseja excluir este usuario?')">Excluir</a>
-                </td>
-            </tr>
+            <?php foreach ($usuarios as $usuario): ?>
+                <tr>
+                    <td><?= htmlspecialchars($usuario['id_usuario']) ?></td>
+                    <td><?= htmlspecialchars($usuario['nome']) ?></td>
+                    <td><?= htmlspecialchars($usuario['email']) ?></td>
+                    <td><?= htmlspecialchars($usuario['id_perfil']) ?></td>
+                    <td>
+                        <a href="excluir_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario']) ?>"
+                           onclick="return confirm('Tem certeza que deseja excluir este usuario?')">Excluir</a>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         </table>
-    <?php else:?>
+    <?php else: ?>
         <p>Nenhum usuario encontrado</p>
     <?php endif; ?>
 
