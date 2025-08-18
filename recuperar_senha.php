@@ -52,7 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="submit">Enviar a Senha Temporaria </button>
     </form>
-
+    <div class="text-center"> 
+        <a href="principal.php" > Voltar </a>
+        </div>
 </body>
 
 </html>
