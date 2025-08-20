@@ -2,32 +2,36 @@
 session_start();
 require_once("conexao.php");
 
-//VERIFICA SE O USUARIO TEM PERMISSAO
-//SUPONDO QUE O PERFIL 1 SEJA O ADMINISTRADOR
-
+// VERIFICA SE O USUARIO TEM PERMISSAO (ADMIN)
 if ($_SESSION['perfil'] != 1) {
-    echo "Acesso negado!";
+    echo "<script>alert('Acesso negado!');window.location.href='principal.php'</script>";
+    exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["nome"];
-    $email = $_POST["email"];
+    $nome = trim($_POST["nome"]);
+    $email = trim($_POST["email"]);
     $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
-    $id_perfil = $_POST["id_perfil"];
+    $id_perfil = (int)$_POST["id_perfil"];
 
-    $sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES (:nome,:email,:senha,:id_perfil)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam('nome', $nome, );
-    $stmt->bindParam('email', $email, );
-    $stmt->bindParam('senha', $senha, );
-    $stmt->bindParam('id_perfil', $id_perfil, PDO::PARAM_STR);
+    if ($nome && $email && $senha && $id_perfil) {
+        $sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES (:nome,:email,:senha,:id_perfil)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
+        $stmt->bindParam(':id_perfil', $id_perfil, PDO::PARAM_INT);
 
-    if ($stmt->execute()) {
-        echo "<script>alert('Usuário cadastrado com sucesso!')</script>";
+        if ($stmt->execute()) {
+            echo "<script>alert('Usuário cadastrado com sucesso!');window.location.href='buscar_usuario.php'</script>";
+        } else {
+            echo "<script>alert('Erro ao cadastrar usuário!');</script>";
+        }
     } else {
-        echo "<script>alert('Erro ao cadastrar usuário!')</script>";
+        echo "<script>alert('Preencha todos os campos!');</script>";
     }
 }
+
 
 $id_perfil = $_SESSION['perfil'];
 $permissoes = [
@@ -96,7 +100,7 @@ $opcoes_menu = $permissoes[$id_perfil];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar usuário</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/cadusu.css">
 </head>
 
 <body>
@@ -136,8 +140,11 @@ $opcoes_menu = $permissoes[$id_perfil];
             <option value="4">Cliente</option>
         </select>
 
-            <button type="submit"> Salvar </button>
-            <button type="reset"> Cancelar </button>
+    <div class="botoes">
+        <button type="submit"> Salvar </button>
+        <button type="reset"> Cancelar </button>
+    </div>
+
     </form>
 
     <a href="principal.php">Voltar</a>

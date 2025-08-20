@@ -1,0 +1,102 @@
+/* Reset e fonte */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #c3e0ff, #99ccff);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Título */
+h2 {
+    text-align: center;
+    color: #0077cc;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Formulário */
+form {
+    background-color: #ffffff;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.3s;
+}
+
+form:hover {
+    transform: translateY(-2px);
+}
+
+form label {
+    font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+form input:focus {
+    border-color: #0077cc;
+    box-shadow: 0 0 5px rgba(0,119,204,0.3);
+    outline: none;
+}
+
+/* Botão */
+form button {
+    padding: 12px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+form button:hover {
+    background-color: #005fa3;
+    transform: translateY(-2px);
+}
+
+/* Link de recuperação de senha */
+p a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: 500;
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    transition: color 0.3s;
+}
+
+p a:hover {
+    color: #005fa3;
+}
+
+/* Responsividade */
+@media(max-width: 500px) {
+    form {
+        padding: 25px 20px;
+    }
+}

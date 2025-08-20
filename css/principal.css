@@ -1,0 +1,130 @@
+/* Reset e fonte */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #c3e0ff, #99ccff);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 15px 20px;
+    background-color: #0077cc;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+header h2 {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+header .logout button {
+    background-color: #005fa3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+header .logout button:hover {
+    background-color: #003f7f;
+    transform: translateY(-2px);
+}
+
+/* Menu de navegação */
+nav {
+    background-color: #005fa3;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+nav ul.menu {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav ul.menu li {
+    position: relative;
+}
+
+nav ul.menu li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+nav ul.menu li a:hover {
+    background-color: #004a80;
+    transform: translateY(-2px);
+}
+
+/* Dropdown */
+nav ul.menu li ul.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background-color: #005fa3;
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 6px;
+    min-width: 200px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+nav ul.menu li:hover ul.dropdown-menu {
+    display: block;
+}
+
+nav ul.menu li ul.dropdown-menu li a {
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+nav ul.menu li ul.dropdown-menu li a:hover {
+    background-color: #004a80;
+}
+
+/* Responsividade */
+@media(max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    nav ul.menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul.menu li ul.dropdown-menu {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+}

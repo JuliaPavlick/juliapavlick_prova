@@ -98,7 +98,7 @@ $opcoes_menu = $permissoes[$id_perfil];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir usuario</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/exu.css">
 </head>
 <body>
     <nav>

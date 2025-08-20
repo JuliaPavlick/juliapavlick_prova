@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['busca'])) {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':busca', $busca, PDO::PARAM_INT);
     } else {
-        $sql = "SELECT * FROM usuario WHERE usuario WHERE nome LIKE :busca_nome ORDER BY nome ASC";
+        $sql = "SELECT * FROM usuario WHERE nome LIKE :busca_nome ORDER BY nome ASC";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':busca_nome', "%$busca%", PDO::PARAM_STR);
     }
@@ -99,7 +99,7 @@ $opcoes_menu = $permissoes[$id_perfil];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busca de funcionarios</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/bu.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 

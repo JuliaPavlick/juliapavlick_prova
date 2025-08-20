@@ -1,0 +1,169 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f2f2f2;
+    color: #333;
+    padding: 20px;
+}
+
+/* Menu de navegação */
+nav {
+    background-color: #4c53af;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+nav ul.menu {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul.menu li {
+    position: relative;
+    margin-right: 20px;
+}
+
+nav ul.menu li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 8px 12px;
+    display: block;
+    transition: background 0.3s;
+    border-radius: 4px;
+}
+
+nav ul.menu li a:hover {
+    background-color: #5f6deb;
+}
+
+nav ul.menu li ul.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background-color: #614caf;
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 6px;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+nav ul.menu li:hover ul.dropdown-menu {
+    display: block;
+}
+
+nav ul.menu li ul.dropdown-menu li {
+    margin: 0;
+}
+
+nav ul.menu li ul.dropdown-menu li a {
+    padding: 8px 20px;
+    color: #fff;
+    font-size: 14px;
+}
+
+nav ul.menu li ul.dropdown-menu li a:hover {
+    background-color: #454ba0;
+}
+
+/* Título */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+form input[type="text"] {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 250px;
+}
+
+form button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4c77af;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background-color: #7745a0;
+}
+
+/* Tabela de usuários */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+table th {
+    background-color: #9b4caf;
+    color: white;
+    font-weight: 500;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table a {
+    text-decoration: none;
+    color: #6f4caf;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+table a:hover {
+    text-decoration: underline;
+}
+
+/* Link voltar */
+.text-center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.text-center a {
+    text-decoration: none;
+    color: #4c53af;
+    font-weight: 500;
+    border: 1px solid #4c8baf;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.text-center a:hover {
+    background-color: #8d36c0;
+    color: white;
+}
