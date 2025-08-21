@@ -55,6 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="text-center"> 
         <a href="principal.php" > Voltar </a>
         </div>
+        <andress>
+            Júlia Caroline Borges Pavlick
+        </andress>
 </body>
 
 </html>

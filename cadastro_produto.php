@@ -16,9 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_produto = $_POST["id_produto"];
 
     if ($nome_prod && $descricao && $qtde && $valor_unit && $id_produto) {
-        $sql = "INSERT INTO usuario (nome_prod, descricao, qtde, valor_unit, id_prod) VALUES (:nome_prod,:descricao, :qtde, :valor_unit, :id_produto)";
+        $sql = "INSERT INTO produto (nome_prod, descricao, qtde, valor_unit, id_produto) VALUES (:nome_prod,:descricao, :qtde, :valor_unit, :id_produto)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':nome_produto', $nome_prod, PDO::PARAM_STR);
+        $stmt->bindParam(':nome_prod', $nome_prod, PDO::PARAM_STR);
         $stmt->bindParam(':descricao', $descricao, PDO::PARAM_STR);
         $stmt->bindParam(':qtde', $qtde, PDO::PARAM_STR);
         $stmt->bindParam(':valor_unit', $valor_unit, PDO::PARAM_STR);
@@ -102,7 +102,7 @@ $opcoes_menu = $permissoes[$id_perfil];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produto</title>
-    <link rel="stylesheet" href="css/cadusu.css">
+    <link rel="stylesheet" href="css/cadprod.css">
 </head>
 
 <body>
@@ -126,16 +126,16 @@ $opcoes_menu = $permissoes[$id_perfil];
     <h2>Cadastrar Produto</h2>
     <form action="cadastro_produto.php" method="POST">
         <label for="nome_prod">Nome do Produto:</label>
-        <input type="text" name="nome_prod" id="nome_prod">
+        <input type="text" name="nome_prod" id="nome_prod" required>
 
         <label for="descricao">Descrição:</label>
-        <input type="text" name="descricao" id="descricao">
+        <input type="text" name="descricao" id="descricao" required>
 
         <label for="qtde">Quantidade:</label>
-        <input type="int" name="qtde" id="qtde">
+        <input type="number" name="valor_unit" id="qtde" required>
 
         <label for="valor_unit">valor Unitário:</label>
-        <input type="int" name="valor_unit" id="valor_unit">
+        <input type="number" steep="0.01" id="valor_unit" required>
 
     <div class="botoes">
         <button type="submit"> Salvar </button>
@@ -146,7 +146,9 @@ $opcoes_menu = $permissoes[$id_perfil];
 
     <a href="principal.php">Voltar</a>
 
-    
+    <andress>
+            Júlia Caroline Borges Pavlick
+        </andress>
 </body>
 
 </html>

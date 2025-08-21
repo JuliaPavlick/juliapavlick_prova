@@ -149,7 +149,9 @@ $opcoes_menu = $permissoes[$id_perfil];
 
     <a href="principal.php">Voltar</a>
 
-    
+    <andress>
+            Júlia Caroline Borges Pavlick
+        </andress>
 </body>
 
 </html>
