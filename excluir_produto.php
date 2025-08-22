@@ -8,8 +8,6 @@ if ($_SESSION['perfil'] != 1) {
     exit();
 }
 
-// INICIALIZA VARIAVEL PARA ARMAZENAR USUARIOS
-$usuarios = [];
 
 // BUSCA TODOS OS USUÁRIOS CADASTRADOS EM ORDEM ALFABETICA
 $sql = "SELECT * FROM produto ORDER BY nome_prod ASC";
@@ -134,7 +132,7 @@ $opcoes_menu = $permissoes[$id_perfil];
                     <td><?= htmlspecialchars($produto['qtde']) ?></td>
                     <td><?= htmlspecialchars($produto['valor_unit']) ?></td>
                     <td>
-                        <a href="excluir_produto.php?id=<?= htmlspecialchars($usuario['id_produto']) ?>"
+                        <a href="excluir_produto.php?id=<?= htmlspecialchars($produto['id_produto']) ?>"
                            onclick="return confirm('Tem certeza que deseja excluir este Produto?')">Excluir</a>
                     </td>
                 </tr>
@@ -148,5 +146,6 @@ $opcoes_menu = $permissoes[$id_perfil];
     <andress>
             Júlia Caroline Borges Pavlick
         </andress>
+        <script src="js/validacao_produto.js"></script>
 </body>
 </html>
