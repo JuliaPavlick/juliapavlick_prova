@@ -85,16 +85,15 @@ h2 {
 
 /* Formulário */
 form {
-    max-width: 500px;
-    margin: 0 auto 20px auto;
-    background-color: #ffffff;
-    padding: 30px 25px;
+    max-width: 500px;       
+    margin: 0 auto;         
+    padding: 20px;
+    background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    transition: transform 0.3s;
+    gap: 15px;             
 }
 
 form:hover {
@@ -106,8 +105,9 @@ form label {
 }
 
 form input[type="text"],
-form input[type="email"],
-form input[type="password"],
+form input[type="text"],
+form input[type="number"],
+form input[type="number"],
 form select {
     padding: 12px 15px;
     border-radius: 6px;

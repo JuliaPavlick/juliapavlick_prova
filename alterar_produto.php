@@ -153,11 +153,12 @@ $opcoes_menu = $permissoes[$id_perfil];
             <input type="number" id="valor_unit" name="valor_unit" value="<?= htmlspecialchars($produto['valor_unit']) ?>" required>
             
             <button type="submit">Alterar</button>
-            <button type="reset">Cancelar</button>
+            <button>
+            <a href="principal.php">Voltar</a>
+            </button>
         </form>
     <?php endif; ?>
 
-    <a href="principal.php">Voltar</a>
     <address>
         Júlia Caroline Borges Pavlick
     </address>
