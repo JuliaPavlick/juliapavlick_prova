@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['busca'])) {
     } else {
         $sql = "SELECT * FROM produto WHERE nome_prod LIKE :busca_nome_prod ORDER BY nome_prod ASC";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':busca_nome_prod', "%$busca%", PDO::PARAM_STR);
+        $stmt->bindValue(':busca_nome_prod', "{%$busca%}", PDO::PARAM_STR);
     }
 
 } else {
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['busca'])) {
     $stmt = $pdo->prepare($sql);
 }
 $stmt->execute();
-$usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $id_perfil = $_SESSION['perfil'];
 $permissoes = [
     //adm
@@ -136,8 +136,9 @@ $opcoes_menu = $permissoes[$id_perfil];
                 <th>ID</th>
                 <th>Nome do Produto</th>
                 <th>Descrição</th>
-                <th>Quantidae</th>
+                <th>Quantidade</th>
                 <th>Valor Unitário</th>
+                <th>Ações</th>
             </tr>
 
         <?php foreach($produtos as $produto): ?>
@@ -164,5 +165,6 @@ $opcoes_menu = $permissoes[$id_perfil];
         <andress>
             Júlia Caroline Borges Pavlick
         </andress>
+        <script src="js/validacao_produto.js"></script>
 </body>
 </html>
