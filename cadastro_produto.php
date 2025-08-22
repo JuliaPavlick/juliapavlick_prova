@@ -13,16 +13,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descricao = trim($_POST["descricao"]);
     $qtde = $_POST["qtde"];
     $valor_unit = $_POST["valor_unit"];
-    $id_produto = $_POST["id_produto"];
 
-    if ($nome_prod && $descricao && $qtde && $valor_unit && $id_produto) {
-        $sql = "INSERT INTO produto (nome_prod, descricao, qtde, valor_unit, id_produto) VALUES (:nome_prod,:descricao, :qtde, :valor_unit, :id_produto)";
+    if ($nome_prod && $descricao && $qtde && $valor_unit) {
+        $sql = "INSERT INTO produto (nome_prod, descricao, qtde, valor_unit) 
+                VALUES (:nome_prod, :descricao, :qtde, :valor_unit)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':nome_prod', $nome_prod, PDO::PARAM_STR);
         $stmt->bindParam(':descricao', $descricao, PDO::PARAM_STR);
-        $stmt->bindParam(':qtde', $qtde, PDO::PARAM_STR);
+        $stmt->bindParam(':qtde', $qtde, PDO::PARAM_INT);
         $stmt->bindParam(':valor_unit', $valor_unit, PDO::PARAM_STR);
-        $stmt->bindParam(':id_produto', $id_produto, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             echo "<script>alert('Produto cadastrado com sucesso!');window.location.href='buscar_produto.php'</script>";
@@ -34,10 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-
 $id_perfil = $_SESSION['perfil'];
 $permissoes = [
-    //adm
+     //adm
     1 => [
         "Cadastrar" => [
             "cadastro_usuario.php",
@@ -84,12 +82,11 @@ $permissoes = [
         "Cadastrar" => ["cadastro_fornecedor.php", "cadastro_produto.php"],
         "Buscar" => ["buscar_cliente.php", "buscar_fornecedor.php", "buscar_produto.php"],
         "Alterar" => ["alterar_fornecedor.php", "alterar_produto.php"],
-        "Excluir" => ["excluir_produto.php",]
+        "Excluir" => ["excluir_produto.php"]
     ],
-    //cliente
+   // cliente
     4 => [
         "Cadastrar" => ["cadastro_cliente.php"],
-        "Buscar" => ["buscar_produto.php"],
         "Alterar" => ["alterar_cliente.php"],
     ],
 ];
@@ -97,14 +94,12 @@ $opcoes_menu = $permissoes[$id_perfil];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produto</title>
     <link rel="stylesheet" href="css/cadprod.css">
 </head>
-
 <body>
     <nav>
         <ul class="menu">
@@ -132,23 +127,21 @@ $opcoes_menu = $permissoes[$id_perfil];
         <input type="text" name="descricao" id="descricao" required>
 
         <label for="qtde">Quantidade:</label>
-        <input type="number" name="valor_unit" id="qtde" required>
+        <input type="number" name="qtde" id="qtde" required>
 
-        <label for="valor_unit">valor Unitário:</label>
-        <input type="number" steep="0.01" id="valor_unit" required>
+        <label for="valor_unit">Valor Unitário:</label>
+        <input type="number" step="0.01" name="valor_unit" id="valor_unit" required>
 
-    <div class="botoes">
-        <button type="submit"> Salvar </button>
-        <button type="reset"> Cancelar </button>
-    </div>
-
+        <div class="botoes">
+            <button type="submit">Salvar</button>
+            <button type="reset">Cancelar</button>
+        </div>
     </form>
 
     <a href="principal.php">Voltar</a>
 
-    <andress>
-            Júlia Caroline Borges Pavlick
-        </andress>
+    <address>
+        Júlia Caroline Borges Pavlick
+    </address>
 </body>
-
 </html>
