@@ -27,14 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         $stmt->execute();
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Se o usuário não for encontrado, exibe um alerta
+        $produto = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Se o produto não for encontrado, exibe um alerta
         if (!$produto) {
             echo "<script>alert('Produto não encontrado!');</script>";
         }
     }
 }
+
 $id_perfil = $_SESSION['perfil'];
 $permissoes = [
     //adm
@@ -89,7 +89,6 @@ $permissoes = [
     //cliente
     4 => [
         "Cadastrar" => ["cadastro_cliente.php"],
-        "Buscar" => ["buscar_produto.php"],
         "Alterar" => ["alterar_cliente.php"],
     ],
 ];
@@ -105,7 +104,6 @@ $opcoes_menu = $permissoes[$id_perfil];
     <title>Alterar Produto</title>
     <link rel="stylesheet" href="css/altusu.css">
 
-    <!-- CERTIFIQUE-SE DE QUE O JAVASCRIPT ESTÁ SENDO CARREGADO CORRETAMENTE -->
     <script src="scripts.js"></script>
 </head>
 
@@ -132,13 +130,13 @@ $opcoes_menu = $permissoes[$id_perfil];
         <label for="busca_produto">Digite o id ou nome do produto</label>
         <input type="text" id="busca_produto" name="busca_produto" required onkeyup="buscarSugestoes()">
 
-        <!-- DIV PARA EXIBIR SUGESTOES DE USUARIOS -->
+        <!-- DIV PARA EXIBIR SUGESTOES DE PRODUTOS -->
         <div id="sugestoes"></div>
         <button type="submit">Buscar</button>
     </form>
 
     <?php if ($produto): ?>
-        <!-- FORMULARIO PARA ALTERAR USUARIO -->
+        <!-- FORMULÁRIO PARA ALTERAR PRODUTO -->
         <form action="processa_alteracao_produto.php" method="POST">
             <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produto']) ?>">
 
@@ -149,10 +147,10 @@ $opcoes_menu = $permissoes[$id_perfil];
             <input type="text" id="descricao" name="descricao" value="<?= htmlspecialchars($produto['descricao']) ?>" required>
 
             <label for="qtde">Quantidade:</label>
-            <input type="text" id="qtde" name="qtde" value="<?= htmlspecialchars($produto['qtde']) ?>" required>
+            <input type="number" id="qtde" name="qtde" value="<?= htmlspecialchars($produto['qtde']) ?>" required>
 
-            <label for="valor_unit">valor Unitário:</label>
-            <input type="text" id="valor_unit" name="valor_unit" value="<?= htmlspecialchars($produto['valor_unit']) ?>" required>
+            <label for="valor_unit">Valor Unitário:</label>
+            <input type="number" id="valor_unit" name="valor_unit" value="<?= htmlspecialchars($produto['valor_unit']) ?>" required>
             
             <button type="submit">Alterar</button>
             <button type="reset">Cancelar</button>
@@ -160,8 +158,8 @@ $opcoes_menu = $permissoes[$id_perfil];
     <?php endif; ?>
 
     <a href="principal.php">Voltar</a>
-    <andress>
-            Júlia Caroline Borges Pavlick
-        </andress>
+    <address>
+        Júlia Caroline Borges Pavlick
+    </address>
 </body>
 </html>
